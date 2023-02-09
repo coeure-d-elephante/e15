@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Practice App</h1>
+    <h1>Practice App...</h1>
     <img src="/practice/image/hes-logo.png" alt="hes logo">
 </body>
 
