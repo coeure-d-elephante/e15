@@ -8,10 +8,12 @@
     <style>
     body {
         padding: 20px;
+        padding-left: 30%;
     }
 
     h3 {
         color: grey;
+        padding-left: 15%;
     }
     </style>
 </head>
@@ -19,7 +21,10 @@
 <body>
     <h1>String Processor - e15 Project 1</h1>
     <h3>Enter a string</h3>
-    <input type="text" style="width:400px"> <input value="Process" type="submit">
+    <form action="process.php" method="GET">
+        <input type="text" style="width:400px"> <input value="Process" type="submit">
+    </form>
+
 
     <ul>
         <li>String: <?php echo $inputString; ?></li>
