@@ -3,53 +3,66 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Log\Logger;
+use Symfony\Component\Translation\Provider\NullProvider;
+
 /**
 * All App functions are written in Controllers;
 * Controllers control
 */
 
-class AppController extends Controller {
-   
-    public function index() {
-        return view('pages/index');      
+class AppController extends Controller
+{
+    public function index()
+    {
+        return view('pages/index')->with([
+            'net_total' => session('net_total', null),
+            'sales_tax' => session('sales_tax', null),
+            'gross_total' => session('gross_total', null),
+            'tax'=> session('tax', null)
+        ]);
     }
 
-    public function calculate(Request $request) {
-       $request->validate([
-        'price'=> 'required',
-        'discount'=>'required'
-       ]);
+    public function calculate(Request $request)
+    {
+        $request->validate([
+         'price'=> 'required',
+         'discount'=>'required'
+        ]);
 
-     $price = $request->input('price', '');
-     $discount = $request->input('discount', '');
-     $sale_tax = .0725;
+        $price = $request->input('price', '');
+        $discount = $request->input('discount', '');
+        $tax= $request->input('tax', 'include_tax');
+        
 
-    //  dump($price, $discount, $sale_tax);
-    
-    $float = floatval($discount);
-
-      $multiply = $price * $float;
-
-      $gross_total = $price - $multiply;
-
-      $tax_total = $gross_total * $sale_tax;
+        dump($tax);
        
-      $net_total = $gross_total + $tax_total;
+        $sales_tax = .0725;
 
-    //   dump($net_total);
-    
-       return redirect('/')->with([
-        'net_total' => $net_total
-       ]);
+        // //  dump('inputs:', $price, $discount, $sales_tax);
+        
+        // //convert percent to decimal
+        $float = floatval($discount)/100;
 
-    //    $price = $request->input('price', '');
-    //    $discount = $request->input('discount', '');
-
-    //    error_log($price, $discount);
-    //$price x $discount in decimal form = total
-    //total + 7.25%(total) = actual total
+        $apply_discount_price = $price * $float;
      
+        $gross_total = $price - $apply_discount_price;   
 
+        $tax_amount = $gross_total * $sales_tax;
+
+        $net_total = $gross_total + $tax_amount;
+
+        // // dump([
+        // //     'Price after discount:',$gross_total, 
+        // //     'Tax amount for item:',
+        // //     $tax_amount, 
+        // //     'Grand total with discount and tax:', $net_total
+        // // ]);
+
+        return redirect('/')->with([
+         'net_total' => $net_total,
+         'gross_total' => $gross_total,
+         'price' => $price,
+         'tax'=>$tax
+        ]);
     }
 }
