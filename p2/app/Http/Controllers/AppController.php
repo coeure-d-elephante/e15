@@ -51,12 +51,12 @@ class AppController extends Controller
 
         $net_total = $gross_total + $tax_amount;
 
-        // // dump([
-        // //     'Price after discount:',$gross_total, 
-        // //     'Tax amount for item:',
-        // //     $tax_amount, 
-        // //     'Grand total with discount and tax:', $net_total
-        // // ]);
+        // dump([
+        //     'Price after discount:',$gross_total, 
+        //     'Tax amount for item:',
+        //     $tax_amount, 
+        //     'Grand total with discount and tax:', $net_total
+        // ]);
 
         return redirect('/')->with([
          'net_total' => $net_total,

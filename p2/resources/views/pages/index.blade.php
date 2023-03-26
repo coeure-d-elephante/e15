@@ -29,46 +29,38 @@
 
         <fieldset>
             <label>7.25% Sales Tax (California)</label>
-                <input 
-                type="radio" 
-               name="tax"  
-               id="include_tax" 
-               value="include_tax"
-               {{(!isset($price) OR is_null($tax)) ? 'checked' : '' }}
-                >
-                <br>
+            <input type="radio" name="tax" id="include_tax" value="include_tax"
+                {{ (!isset($price) or is_null($tax)) ? 'checked' : '' }}>
+            <br>
             <label>Exclude Sales Tax</label>
-                <input 
-                type="radio" 
-                name="tax" 
-                id="exclude_tax"      
-                value="exclude_tax"
-                {{ ($tax = 'exclude_tax') ? 'checked' : '' }}
-                >
+            <input type="radio" name="tax" id="exclude_tax" value="exclude_tax"
+                {{ $tax == 'exclude_tax' ? 'checked' : '' }}>
         </fieldset>
 
         <button type='submit' class='btn btn-primary'>Submit</button>
     </form>
 
-    @if (!isset($price) or $price = 0)
-        <div class='results alert alert-warning'>
-            Please enter appropriate values.
-        </div>
+    @if (!isset($price) or $price == 0)
+            <div class='results alert alert-warning'>
+                Please enter appropriate values.
+            </div>
     @else
-        @if ($tax == 'include_tax')
-        <div class='results alert alert-primary'>
-            <div>
-                <label for='net_total'>$ Net Total</label>
-                <input type='number' name='net_total' id='net_total' value='{{ $net_total }}'>
+        @if (isset($price) && $tax == 'include_tax')
+            <div class='results alert alert-primary'>
+                <div>
+                    <label for='net_total'>$ Net Total</label>
+                    <input type='number' name='net_total' id='net_total' value='{{ $net_total }}'>
+                </div>
             </div>
-        </div>
-            @else
-             <div class='results alert alert-primary'>
-            <div>
-                <label for='net_total'>$ Gross Total</label>
-                <input type='number' name='gross_total' id='gross_total' value='{{ $gross_total }}'>
+        @else
+            @if(isset($price) && $tax == 'exclude_tax')
+            <div class='results alert alert-primary'>
+                <div>
+                    <label for='gross_total'>$ Gross Total</label>
+                    <input type='number' name='gross_total' id='gross_total' value='{{ $gross_total }}'>
+                </div>
             </div>
-        </div>
+        @endif
         @endif
     @endif
 @endsection
