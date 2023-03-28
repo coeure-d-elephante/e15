@@ -16,51 +16,40 @@
         {{ csrf_field() }}
 
         <label for='price'>*Price</label>
-        <input type='number' name='price' id='price' value=''>
+        <input type='number' name='price' id='price' value='{{ old('price') }}'>
 
         <select class="form-select form-select-lg mb-3" aria-label="Default select example" id="discount" name="discount">
-            <option selected>*Select Discount</option>
-            <option value="10%">10%</option>
-            <option value="20%">20%</option>
-            <option value="30%">30%</option>
-            <option value="40%">40%</option>
-            <option value="50%">50%</option>
+            <option {{ old('discount' == '0' ? 'selected' : '') }} value="0">*Select Discount</option>
+            <option {{ old('discount' == '10' ? 'selected' : '') }} value="10">10%</option>
+            <option {{ old('discount' == '20' ? 'selected' : '') }} value="20%">20%</option>
+            <option {{ old('discount' == '30' ? 'selected' : '') }} value="30%">30%</option>
+            <option {{ old('discount' == '40' ? 'selected' : '') }} value="40%">40%</option>
+            <option {{ old('discount' == '50' ? 'selected' : '') }} value="50%">50%</option>
         </select>
 
         <fieldset>
-            <label>7.25% Sales Tax (California)</label>
-            <input type="radio" name="tax" id="include_tax" value="include_tax"
-                {{ (!isset($price) or is_null($tax)) ? 'checked' : '' }}>
-            <br>
-            <label>Exclude Sales Tax</label>
-            <input type="radio" name="tax" id="exclude_tax" value="exclude_tax"
-                {{ $tax == 'exclude_tax' ? 'checked' : '' }}>
+            <div class="form-check">
+                <input type="checkbox" name="include_tax" id="include_tax" {{ old('inlude_tax') ? 'checked' : '' }}>
+                <label for="include_tax">7.25% Sales Tax (California)</label>
+            </div>
         </fieldset>
 
         <button type='submit' class='btn btn-primary'>Submit</button>
     </form>
 
-    @if (!isset($price) or $price == 0)
-            <div class='results alert alert-warning'>
-                Please enter appropriate values.
+    @if (count($errors) > 0)
+        <ul class='alert alert-danger'>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+    @if (!is_null($total))
+        <div class='results alert alert-primary'>
+            <div>
+                <label for='total'>Total</label>
+                <input type='number' name='total' id='total' value='{{ $total }}'>
             </div>
-    @else
-        @if (isset($price) && $tax == 'include_tax')
-            <div class='results alert alert-primary'>
-                <div>
-                    <label for='net_total'>$ Net Total</label>
-                    <input type='number' name='net_total' id='net_total' value='{{ $net_total }}'>
-                </div>
-            </div>
-        @else
-            @if(isset($price) && $tax == 'exclude_tax')
-            <div class='results alert alert-primary'>
-                <div>
-                    <label for='gross_total'>$ Gross Total</label>
-                    <input type='number' name='gross_total' id='gross_total' value='{{ $gross_total }}'>
-                </div>
-            </div>
-        @endif
-        @endif
+        </div>
     @endif
 @endsection
