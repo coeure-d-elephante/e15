@@ -4,7 +4,7 @@
     Contact
 @endsection
 
-
 @section('content')
-<p>Contact us @ bookmarks@example.edu</p>
+    <h1>Contact</h1>
+    <p>Questions? Email us at {{ config('mail.supportEmail') }}.</p>
 @endsection

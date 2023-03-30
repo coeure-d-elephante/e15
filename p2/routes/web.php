@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +13,9 @@ use App\Http\Controllers\AppController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
 
 Route::get('/', [AppController::class, 'index']);
 Route::post('/', [AppController::class, 'calculate']);

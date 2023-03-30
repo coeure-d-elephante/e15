@@ -30,7 +30,7 @@
 </section>
 
 <footer>
-    &copy; Bookmark, Inc.
+    &copy; Bookmark, Inc. {{ config('mail.supportEmail') }}
 </footer>
 
 </body>
