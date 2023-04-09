@@ -10,6 +10,10 @@ use App\Http\Controllers\PracticeController;
 /**
  * Misc
  */
+Route::get('/example', function() {
+    return 'Example';
+});
+
 Route::get('/', [PageController::class, 'welcome']);
 Route::get('/contact', [PageController::class, 'contact']);
 Route::any('/practice/{n?}', [PracticeController::class, 'index']);

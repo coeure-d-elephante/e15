@@ -35,7 +35,7 @@ class AppController extends Controller
         }
 
         if($include_tax) {
-            $total = $price + ($price * .0725);
+            $total = $total + ($total * .0725);
         }
 
         return redirect('/')->with([
