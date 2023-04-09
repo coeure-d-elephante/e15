@@ -11,7 +11,7 @@ use App\Http\Controllers\PracticeController;
  * Misc
  */
 Route::get('/example', function() {
-    return 'Example';
+    return 'Example. This is a run test';
 });
 
 Route::get('/', [PageController::class, 'welcome']);
