@@ -6,6 +6,12 @@
     Add a book
 @endsection
 
+@if(session('flash-alert'))
+<div class='flash-alert'>
+    {{ session('flash-alert') }}
+</div>
+@endif
+
 @section('content')
 <h1>Add a book</h1>
 
@@ -17,16 +23,19 @@
         {{ csrf_field() }}
 
         <label for='title'>* Title</label>
-        <input type='text' name='title' id='title'>
+        <input type='text' name='title' id='title' value='old("title")'>
+
+        <label for='title'>* Short URL</label>
+        <input type='text' name='slug' id='slug' value='old("title")'>
 
         <label for='author'>* Author</label>
-        <input type='text' name='author' id='author'>
+        <input type='text' name='author' id='author' value='old("title")'>
 
         <label for='published_year'>* Published Year (YYYY)</label>
-        <input type='text' name='published_year' id='published_year'>
+        <input type='text' name='published_year' id='published_year' value='old("title")'>
 
         <label for='cover_url'>Cover URL</label>
-        <input type='text' name='cover_url' id='cover_url' value='http://'>
+        <input type='text' name='cover_url' id='cover_url' value='http://' >
 
         <label for='info_url'>* Wikipedia URL</label>
         <input type='text' name='info_url' id='info_url' value='http://'>
@@ -38,5 +47,15 @@
         <textarea name='description'></textarea>
 
         <button type='submit' class='btn btn-primary'>Add Book</button>
+
+
+        @if(count($errors) > 0)
+            <ul class='alert alert-danger'>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+
     </form>
 @endsection

@@ -7,11 +7,41 @@ use App\Models\Book;
 
 class PracticeController extends Controller
 {
-    /**
-    * Demonstrating updating multiple rows of data
-    */
 
-    public function practice7() {
+    public function practice8()
+    {
+        // $results = Book::all();
+        // dump($results); # Shows an object of type Illuminate\Database\Eloquent\Collection that contains multiple Book objects
+
+        // $results = Book::where('published_year', '>', 1990)->get();
+        // dump($results); # Shows an object of type Illuminate\Database\Eloquent\Collection that contains multiple Book objects
+
+        // # Even if our query finds just 1 result, *get* still yields a Collection, it'll just be a Collection of 1 object:
+        $books = Book::where('title', '=', 'A Repudiandae Ab Et Dolor Dolor')->get();
+        foreach($books as $book) {
+            $book->title = 'abc';
+            $book->save();
+        }
+        dump($books); # Shows an object of type Illuminate\Database\Eloquent\Collection that contains 1 Book object
+
+        // # Similarly, if our query does not find any results, *get* still yields a Collection, it’ll just be empty
+        // $results = Book::where('author', '=', 'Amy Tan')->get();
+        // dump($results); # Empty collection
+
+        // # Even if we limit our query to 1 book, because we're using the *get* method, we will get a Collection in return
+        // $results = Book::limit(1)->get();
+
+        $book = Book::first();
+        $book->title = 'abc';
+        $book->save();
+        dump($book);
+    }
+    /**
+     * Demonstrating updating multiple rows of data
+     */
+
+    public function practice7()
+    {
         $book = Book::where('author', '=', 'F. Scott Fitzgerald')->first();
 
         if (!$book) {
@@ -35,7 +65,7 @@ class PracticeController extends Controller
             foreach ($books as $book) {
                 # Change some properties
                 $book->author = 'JK Rowling';
-            
+
                 # Save the changes
                 $book->save();
             }
@@ -48,8 +78,8 @@ class PracticeController extends Controller
     }
 
     /**
-    * Demonstrating updating a single row of data
-    */
+     * Demonstrating updating a single row of data
+     */
     public function practice5()
     {
         # First get a book to update
@@ -73,8 +103,8 @@ class PracticeController extends Controller
     }
 
     /**
-    * Demonstrating reading data
-    */
+     * Demonstrating reading data
+     */
     public function practice4()
     {
         $book = new Book();
@@ -89,8 +119,8 @@ class PracticeController extends Controller
     }
 
     /**
-    * Demonstrating creating data
-    */
+     * Demonstrating creating data
+     */
     public function practice3()
     {
         # Create a new instance of our Book model
@@ -109,7 +139,7 @@ class PracticeController extends Controller
 
         # Persist the book to the database
         $book->save();
-        
+
         # Confirm results
         dump('The book ' . $book->title . ' was added');
         dump(Book::all()->toArray());
