@@ -9,7 +9,7 @@ class TasksController extends Controller
 {
     public function index()
     {
-      return view('/')->with([
+      return view('/tasks/index')->with([
     //   Home Landing Page with returned variables
       ]);
     }
@@ -29,9 +29,9 @@ class TasksController extends Controller
         
     }
 
-    public function updateTask()
+    public function editTask()
     {
-        
+        //status tinyInt legend: 0: to-do, 1: In Prog, 2: Complete
     }
 
     public function deleteTask()

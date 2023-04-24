@@ -20,4 +20,4 @@ use App\Http\Controllers\TasksController;
 //     return view('welcome');
 // });
 
-Route::any('/', [TasksController::class, 'index']);
+Route::get('/', [TasksController::class, 'index']);

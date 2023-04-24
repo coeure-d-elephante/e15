@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('notes');
-            $table->dateTimeTz('created_at');
+            $table->dateTime('created_at');
             $table->tinyInteger('status');
 
         });
