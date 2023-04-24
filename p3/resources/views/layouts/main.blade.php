@@ -8,28 +8,27 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href='/css/bookmark.css' rel='stylesheet'>
+    <link href='/css/simplify.css' rel='stylesheet'>
 
     @yield('head')
 </head>
 <body>
 
-@if(session('flash-alert'))
+{{-- @if(session('flash-alert'))
     <div class='flash-alert'>
         {{ session('flash-alert') }}
     </div>
-@endif
+@endif --}}
 
 <header>
-    <a href='/'><img src='/images/bookmark-logo@2x.png' id='logo' alt='bookmark Logo'></a>
+    <a href='/'><img src='' id='logo' alt='logo'></a>
 
     <nav>
         <ul>
             <li><a href='/'>Home</a></li>
-            <li><a href='/books'>All Books</a></li>
-            <li><a href='/books/create'>Add a book</a></li>
-            <li><a href='/list'>Your list</a></li>
-            <li><a href='/contact'>Contact</a></li>
+            <li><a href='/academic-projects'>Academic Projects</a></li>
+            <li><a href='/personal-projects'>Personal Projects</a></li>
+               <li><a href='/contact'>Contact Me</a></li>
             <li>
             @if(!Auth::user())
                 <a href='/login'>Login</a>
@@ -49,7 +48,7 @@
 </section>
 
 <footer>
-    &copy; Bookmark, Inc. {{ config('mail.contact_email') }}
+    &copy; Simplify {{ config('mail.contact_email') }}
 </footer>
 
 </body>

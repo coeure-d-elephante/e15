@@ -8,10 +8,34 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+    public function edit(Request $request, $slug)
+    {
+        $book = Book::where('slug', '=', $slug)->first();
+
+        if(!$book) {
+            return redirect('/books')->with(['flash-alert' => 'Book not found.']);
+        }
+
+        return view('books/edit', ['book' => $book]);
+    }
+
+    public function update(Request $request, $slug)
+    {
+        $book = Book::where('slug', '=', $slug)->first();
+
+        if(!$book) {
+            return redirect('/books')->with(['flash-alert' => 'Book not found.']);
+        }
+
+        return view('books/edit', ['book' => $book]);
+    }
+
     /**
     * GET /books/create
     * Display the form to add a new book
     */
+   
+
     public function create(Request $request)
     {
         return view('books/create');
@@ -24,11 +48,12 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:225',
-            'slug' => 'required|unique:books, slug',
-            'author' => 'required|max:225',
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:books,slug',
+            'author' => 'required|max:255',
             'published_year' => 'required|digits:4',
             'cover_url' => 'required|url',
+            'info_url' => 'required|url',
             'purchase_url' => 'required|url',
             'description' => 'required|min:100'
         ]);
@@ -39,11 +64,12 @@ class BookController extends Controller
         $book->author = $request->author;
         $book->published_year = $request->published_year;
         $book->cover_url = $request->cover_url;
+        $book->info_url = $request->info_url;
         $book->purchase_url = $request->purchase_url;
         $book->description = $request->description;
         $book->save();
 
-        return redirect('/books/create')->with(['flash-alert' => 'Your book was added']);
+        return redirect('/books/create')->with(['flash-alert' => 'Your book was added.']);
     }
 
     /**

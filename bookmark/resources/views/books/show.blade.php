@@ -21,6 +21,9 @@ Book not found. <a href='/books'>Check out the other books in our library...</a>
     <a href='{{ $book->info_url }}'>Learn more...</a>
 </p>
 
+
+<button href="href='/books/edit">Edit</button>
+
 <form method='' action=''>
 <button>Delete</button>
 <form>
