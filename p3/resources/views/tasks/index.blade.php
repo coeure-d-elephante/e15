@@ -5,14 +5,13 @@
 @endsection
 
 @section('content')
-    <h1>Welcome to Simplify</h1>
-
     <div class="row mx-5 mb-3">
-        <div class="mb-3 mt-3">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Academic Projects</button>
-        </div>
 
-        <div class="mb-3 mt-3"> <button type="button" class="btn btn-success btn-lg btn-block">Personal Projects</button>
+        <div class="mb-2 mt-2">
+            <a href='/academic-projects' class="button-academic">Academic Projects</a>
+        </div>
+        <div class="mb-2 mt-2">
+            <a href='/personal-projects' class="button-personal">Personal Projects</a>
         </div>
 
     </div>

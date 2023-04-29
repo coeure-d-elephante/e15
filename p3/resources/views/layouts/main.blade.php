@@ -25,9 +25,6 @@
 
     <nav>
         <ul>
-            <li><a href='/'>Home</a></li>
-            <li><a href='/academic-projects'>Academic Projects</a></li>
-            <li><a href='/personal-projects'>Personal Projects</a></li>
                <li><a href='/contact'>Contact Me</a></li>
             <li>
             @if(!Auth::user())

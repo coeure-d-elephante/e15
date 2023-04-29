@@ -1,3 +1,60 @@
+.button-academic {
+    display: block;
+    width: 300px;
+    height: 80px;
+    background: #1e82c5;
+    padding-top: 25px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.button-personal {
+    display: block;
+    width: 300px;
+    height: 80px;
+    background: #14bf7d;
+    padding-top: 25px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+
+#logo {
+    border-radius: 50%; 
+    max-height: 150px;
+    max-width: 150px;
+    margin-left: 5%;
+    margin-top: 10%;
+}
+
+body {
+    /* Default font-size */
+    font-size: 1.6rem;
+
+    padding: 0;
+    margin: 5;
+    background-color: #282626;
+
+    /* https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+footer {
+    text-align: center;
+    background-color: #312f2f;
+    color: white;
+    padding: 20px;
+}
+
+
 *----------------------------------------------------
 Nav bar
 -----------------------------------------------------*/
@@ -6,13 +63,15 @@ nav {
     border-bottom: 1px solid #eee;
     padding: 5px;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+   
 }
 
 nav ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    margin-left: 5%;
 }
 
 nav ul li {
@@ -32,5 +91,5 @@ nav ul li a:link {
 
 nav ul li a:hover,
 nav ul li button:hover {
-    color: #18bc9c;
+    color:black;
 }
