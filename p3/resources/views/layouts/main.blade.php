@@ -21,7 +21,7 @@
 @endif --}}
 
 <header>
-    <a href='/'><img src='' id='logo' alt='logo'></a>
+    <a href='/'><img src='/images/simplify.png' id='logo' alt='logo'></a>
 
     <nav>
         <ul>
