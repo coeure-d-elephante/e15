@@ -9,17 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      *
+     * Academic or Personal Project
+     * 
      * @return void
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('project_category', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('category');
-            $table->string('title');
-            $table->text('notes');
-            $table->dateTime('created_at');
-            $table->tinyInteger('status');
+            $table->tinyInteger('project_category');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('project_category');
     }
 };
