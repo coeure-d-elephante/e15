@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('category');
+            $table->string('project_title');
+            $table->text('project_description');
             $table->string('title');
             $table->text('notes');
             $table->dateTime('created_at');
