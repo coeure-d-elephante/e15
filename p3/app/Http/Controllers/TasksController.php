@@ -19,15 +19,19 @@ class TasksController extends Controller
 
     public function showAcademicProjects()
     {   
+        $task = Task::all();
+
         return view('/tasks/academic')->with([
-          //show all tasks with academic category
+          'task' => $task
         ]);
     }
 
     public function showPersonalProjects()
-    {
+    { 
+        $task = Task::all();
+
       return view('/tasks/personal')->with([
-           //show all tasks with personal category
+           'task' => $task
       ]);
     }
 
