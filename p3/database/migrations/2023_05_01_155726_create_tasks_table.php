@@ -8,6 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * 
+     * # Add a new bigint field called `author_id` 
      *
      * @return void
      */
@@ -15,11 +17,17 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('category');
+            # Add a new bigint field called `author_id` 
+            # has to be unsigned (i.e. positive)
+            # nullable so it's possible to have a book without an author
+            $table->bigInteger('project_id')->unsigned();
+
+            # This field `author_id` is a foreign key that connects to the `id` field in the `authors` table
+            $table->foreign('project_id')->references('id')->on('projects');
             $table->string('title');
             $table->text('notes');
-            $table->dateTime('created_at');
-            $table->tinyInteger('status');
+            $table->timestamps();
+            $table->enum('status', ['to-do', 'in progress', 'done']); //enum()
         });
     }
 

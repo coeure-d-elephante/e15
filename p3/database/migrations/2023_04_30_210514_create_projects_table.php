@@ -8,17 +8,17 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * enum() data type for sql in place of categories
      * @return void
      */
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('project_category');
+            $table->enum('category', ['academic', 'personal']); 
             $table->string('project_title');
             $table->text('description');  
-            $table->dateTime('created_at');
+            $table->timestamps();
         });
     }
 
