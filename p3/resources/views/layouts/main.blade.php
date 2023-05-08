@@ -26,6 +26,7 @@
     <nav>
         <ul>
                <li><a href='/contact'>Contact Me</a></li>
+               <li><a href='/tasks/create'>Create Task</a></li>
             <li>
             @if(!Auth::user())
                 <a href='/login'>Login</a>

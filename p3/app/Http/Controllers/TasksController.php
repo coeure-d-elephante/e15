@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 // use Illuminate\Support\Facades\DB;
 
 use App\Models\Task;
+use App\Models\Project;
 
 class TasksController extends Controller
 {
@@ -18,11 +19,15 @@ class TasksController extends Controller
     }
 
     public function showAcademicProjects()
-    {   
-        $task = Task::all();
+    {   //show projects on the select bar
+        $project = new Project();
+
+        $project->title = 'Chess game';
+        $project->save();
+
 
         return view('/tasks/academic')->with([
-          'task' => $task
+          'project' => $project
         ]);
     }
 

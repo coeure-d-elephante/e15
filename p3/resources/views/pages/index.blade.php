@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+    @if (Auth::user())
+        <h2>
+            Hello {{ Auth::user()->name }}!
+        </h2>
+    @endif
     <div class="row mx-5 mb-3">
 
         <div class="mb-2 mt-2">

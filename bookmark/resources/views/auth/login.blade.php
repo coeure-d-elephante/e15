@@ -1,7 +1,6 @@
 @extends('layouts/main')
 
 @section('content')
-
     <h1>Login</h1>
 
     Don’t have an account? <a href='/register'>Register here...</a>
@@ -24,8 +23,6 @@
 
         <button type='submit' test='login-button' class='btn btn-primary'>Login</button>
 
-    </a>
 
     </form>
-
 @endsection
