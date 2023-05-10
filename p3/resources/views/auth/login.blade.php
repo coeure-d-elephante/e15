@@ -1,31 +1,35 @@
 @extends('layouts/main')
 
 @section('content')
+  
 
-    <h1>Login</h1>
+    
+    <div class="container">
+      <h1 class="text">Login</h1>
+      <p class="text"> Don’t have an account?</p>
+      <a href='/register'>Register here...</a>
+        <div class="row justify-content-md-center">
+            <form method='POST' action='/login'>
 
-    Don’t have an account? <a href='/register'>Register here...</a>
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for='email'>E-Mail Address</label>
+                    <input class="form-control" id='email' name='email' type='email' value='{{ old('email') }}'
+                        autofocus>
+                    @include('includes.error-field', ['fieldName' => 'email'])
 
-    <form method='POST' action='/login'>
+                    <label for='password'>Password</label>
+                    <input class="form-control" id='password' name='password' type='password'>
+                    @include('includes.error-field', ['fieldName' => 'password'])
 
-        {{ csrf_field() }}
-
-        <label for='email'>E-Mail Address</label>
-        <input id='email' type='email' name='email' value='{{ old('email') }}' autofocus>
-        @include('includes.error-field', ['fieldName' => 'email'])
-
-        <label for='password'>Password</label>
-        <input id='password' type='password' name='password'>
-        @include('includes.error-field', ['fieldName' => 'password'])
-
-        <label>
-            <input type='checkbox' name='remember' {{ old('remember') ? 'checked' : '' }}> Remember Me
-        </label>
-
-        <button type='submit' class='btn btn-primary'>Login</button>
-
-    </a>
-
-    </form>
-
+                    <label style="color:white">
+                        <input name='remember' type='checkbox' {{ old('remember') ? 'checked' : '' }}>
+                        Remember Me
+                    </label>
+                </div>
+                <button class='btn btn-primary' type='submit'>Login</button>
+                </a>
+            </form>
+        </div>
+    </div>
 @endsection

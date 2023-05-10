@@ -5,6 +5,10 @@
 @endsection
 
 @section('content')
-    <h1>Contact</h1>
-    <p>Questions? Email us at {{ config('mail.supportEmail') }}.</p>
+<div>
+    <h1 style="color:white">Contact</h1>
+    <p style="color:white">
+    Contact me
+    </p>
+    <div>
 @endsection

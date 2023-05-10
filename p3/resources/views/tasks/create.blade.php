@@ -7,29 +7,53 @@
 @section('content')
     <h1>Create Task</h1>
 
-    <form method='POST' action='/tasks'>
-        <div class='details'>* Required fields</div>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <form method='POST' action='/store'>
 
-        {{ csrf_field() }}
+                <h2 style="color:red">* Required fields </h2>
 
-        <label for='title'>* Title</label>
-        <input type='text' name='title' id='title' value='{{ old('title') }}'>
-
-        <label for='notes'>Notes</label>
-        <textarea name='notes' value='{{ old('notes') }}'></textarea>
-
-        <label for='status'>* status</label>
-        <input type='text' name='author' id='status' value='{{ old('status') }}'>
-
-
-        <button type='submit' class='btn btn-primary'>Add Task</button>
-
-        @if (count($errors) > 0)
-            <ul class='alert alert-danger'>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                {{ csrf_field() }}
+                <div class="form-group">
+                 <select name='project_id' class="form-select" aria-label="Default select example">
+                <option {{ old('project' == '0' ? 'selected' : '') }} selected>Select Project
+                </option>
+                @foreach ($projects as $project)
+                        <option value='{{ $project->id }}' {{ old('project' == '0' ? 'selected' : '') }} selected> {{ $project->project_title }}
+                        </option>
                 @endforeach
-            </ul>
-        @endif
-    </form>
+            </select>
+                    <label for='title' style="color:white">*title</label>
+                    <input class="form-control" id='title' name='title' type='text' value='{{ old('title') }}'>
+                </div>
+                <div class="form-group">
+                    <label for='notes' style="color:white">*notes</label>
+                    <textarea class="form-control" name='notes' value='{{ old('notes') }}'></textarea>
+                </div>
+                <div class="form-group">
+                    <label for='status' style="color:white">*status</label>
+                    <select class="form-select" aria-label="Select Status">
+                        <option value="" {{ old('status' == 'to-do' ? 'selected' : '') }} selected>To-do
+                        </option>
+                        <option {{ old('status' == 'in progress' ? 'selected' : '') }} selected>In-progress
+                        </option>
+                         <option {{ old('status' == 'done' ? 'selected' : '') }} selected>Done
+                        </option>
+                    </select>
+                </div>
+
+                <button class='btn btn-primary' type='submit'>Add Task</button>
+
+                @if (count($errors) > 0)
+                    <ul class='alert alert-danger'>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </form>
+        </div>
+
+    </div>
+
 @endsection

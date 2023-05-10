@@ -10,7 +10,10 @@ class ProjectsTableSeeder extends Seeder
 {
     public function run()
     {
-       $this->createOneProject();
+       $this->createProjectOne();
+       $this->createProjectTwo();
+       $this->createProjectThree();
+       $this->createProjectFour();
     }
 
     /**
@@ -19,7 +22,7 @@ class ProjectsTableSeeder extends Seeder
      * @return void
      */
 
-    private function createOneProject()
+    private function createProjectOne()
     {
         $project = new Project();
         $project->category = 'academic'; 
@@ -28,5 +31,31 @@ class ProjectsTableSeeder extends Seeder
         $project->save();
     }
 
+    private function createProjectTwo()
+    {
+        $project = new Project();
+        $project->category = 'personal'; 
+        $project->project_title = 'Google Clone';
+        $project->description = 'An exact clone of Google'; 
+        $project->save();
+    }
+
+    private function createProjectThree()
+    {
+        $project = new Project();
+        $project->category = 'academic'; 
+        $project->project_title = 'Mail';
+        $project->description = 'An email project using python, django, and JS'; 
+        $project->save();
+    }
+
+    private function createProjectFour()
+    {
+        $project = new Project();
+        $project->category = 'personal'; 
+        $project->project_title = 'Network';
+        $project->description = 'A social platform like Twitter'; 
+        $project->save();
+    }
    
 }

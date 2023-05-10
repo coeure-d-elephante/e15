@@ -11,18 +11,9 @@ class PagesController extends Controller
       return view('pages/index');
     }
 
-    // public function login()
-    // {
-    //   return view('auth/login');
-    // }
-
-    // public function register()
-    // {
-    //   return view('auth/register');
-    // }
-
     public function contact()
     {
       return view('pages/contact');
     }
+
 }
